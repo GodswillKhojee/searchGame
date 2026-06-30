@@ -1,6 +1,6 @@
 import React from 'react'
 import {useState, useEffect} from 'react';
-
+import GameCards from '../components/GameCards';
 const Home = () => {
     const [searchQuery, setSearchQuery] = useState("");
 
@@ -18,6 +18,9 @@ const Home = () => {
                 />
              <button className='px-2 text-white bg-purple-500 rounded-xl'>Submit</button>
         </form>
+        <div>
+            <GameCards/>
+        </div>
     </div>
 
   )
