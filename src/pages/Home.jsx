@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import GameCards from '../components/GameCards';
-import { getGames } from '../services/api';
+import { getGames, searchGames } from '../services/api';
 
 const Home = () => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -23,8 +23,19 @@ const Home = () => {
 
     const formHandle = async (e) => {
         e.preventDefault()
-        // alert(searchQuery);
-        // 
+        if(!searchQuery.trim()) {
+            const allGame = await getGames();
+            setGames(allGame);
+            return;
+        }
+        
+        try {
+            const searchResult = await searchGames(searchQuery);
+            setGames(searchResult);
+        } catch (error) {
+            console.log(error);
+            setGames("no game found...")
+        }
     }
     return (
         <div className='bg-black w-full h-full'>

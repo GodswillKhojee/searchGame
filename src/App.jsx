@@ -3,10 +3,12 @@ import NavBar from './components/NavBar'
 import {Routes,Route} from 'react-router-dom'
 import Home from './pages/Home'
 import WishList from './pages/WishList'
+import  GameProvider  from './contexts/GameContext'
+
 
 const App = () => {
   return (
-    <div> 
+    <GameProvider> 
       <NavBar />
       <main>
         <Routes>
@@ -14,7 +16,7 @@ const App = () => {
           <Route path='/wishlist' element={<WishList/>} />
         </Routes>
       </main>
-    </div>
+    </GameProvider>
 
   )
 }
